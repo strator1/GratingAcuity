@@ -5,7 +5,7 @@
     <Param name="Data filename" updates="None" val="u'data/%s_%s_%s' % (expInfo['participant'], expName, expInfo['date'])" valType="code"/>
     <Param name="Enable Escape" updates="None" val="False" valType="bool"/>
     <Param name="Experiment info" updates="None" val="{u'participant': u''}" valType="code"/>
-    <Param name="Force stereo" updates="None" val="False" valType="bool"/>
+    <Param name="Force stereo" updates="None" val="True" valType="bool"/>
     <Param name="Full-screen window" updates="None" val="True" valType="bool"/>
     <Param name="HTML path" updates="None" val="html" valType="str"/>
     <Param name="Incomplete URL" updates="None" val="incompleteURL" valType="str"/>
@@ -36,7 +36,7 @@
         <Param name="Begin Experiment" updates="constant" val="import random&amp;#10;import math&amp;#10;from psychopy.tools.monitorunittools import deg2pix&amp;#10;&amp;#10;win.allowStencil=True&amp;#10;&amp;#10;duty_cycle = float(expInfo['duty cycle [0.0 - 1.0]'])&amp;#10;background_color = expInfo['background color']&amp;#10;bright_stripes_color = expInfo['bright stripes color']&amp;#10;dark_stripes_color = expInfo['dark stripes color']&amp;#10;win.color = background_color&amp;#10;diameter = float(expInfo['Aperture diameter (degree)'])&amp;#10;&amp;#10;degrees = {'left' : 90, 'up' : 0, 'pageup' : 45, 'home' : 135}&amp;#10;key_mapping = {'left' : 'left', 'up' : 'up', 'pageup': 'pageup', 'home' : 'home', 'right' : 'left', 'down' : 'up', 'end' : 'pageup', 'pagedown' : 'home', 'num_left' :'left', 'num_right' : 'left', 'num_up' : 'up', 'num_down' : 'up', 'num_prior' : 'pageup', 'num_next' : 'home', 'num_pageup' : 'pageup', 'num_home' : 'home', 'num_7' : 'home', 'num_8' : 'up', 'num_9' : 'pageup', 'num_4' : 'left', 'num_6' : 'left', 'num_1' : 'pageup', 'num_2' : 'up', 'num_3' : 'home'}&amp;#10;&amp;#10;aperture = visual.Aperture(win, size=(2 * deg2pix(diameter, win.monitor) / win.size[0], 2 * deg2pix(diameter, win.monitor) / win.size[1]), autoLog=False)&amp;#10;aperture.enabled = False&amp;#10;&amp;#10;failed = False&amp;#10;repetition = 0" valType="extendedCode"/>
         <Param name="Begin JS Experiment" updates="constant" val="" valType="extendedCode"/>
         <Param name="Begin JS Routine" updates="constant" val="" valType="extendedCode"/>
-        <Param name="Begin Routine" updates="constant" val="orientation = random.choice(degrees.keys())&amp;#10;&amp;#10;degree = degrees[orientation]&amp;#10;&amp;#10;sf = -1*level&amp;#10;&amp;#10;polygon_width_white = 1.0 / (2.0 * sf) * duty_cycle / 0.5&amp;#10;&amp;#10;count = int(math.ceil(diameter * sf / 2.0))&amp;#10;&amp;#10;stim_list = []&amp;#10;stim_list.append(aperture)&amp;#10;stim_list.append(visual.Rect(win=win, name='background', units='deg', width=diameter, height=diameter, ori=0, pos=(0,0), lineWidth=0, lineColor=[1,1,1], lineColorSpace='rgb',fillColor=dark_stripes_color, fillColorSpace='rgb',opacity=1, interpolate=True, autoLog=False))&amp;#10;&amp;#10;for i in range(-count, count+1):&amp;#10;    shift = i / sf&amp;#10;    bl = 1&amp;#10;&amp;#10;    if degree == 0:&amp;#10;        pos_white = (shift, 0)&amp;#10;    elif degree == 90:&amp;#10;        pos_white = (0, shift)&amp;#10;    elif degree == 45 or degree == 135:&amp;#10;        bl = 2*sqrt(2)&amp;#10;        pos_white = (shift * sqrt(2), 0)&amp;#10;&amp;#10;    stim_list.append(visual.Rect(win=win, name=('polygon_white_%d' % i),units='deg', width=polygon_width_white, height=diameter*bl,ori=degree, pos=pos_white, lineWidth=0, lineColor=[1,1,1], lineColorSpace='rgb',fillColor=bright_stripes_color, fillColorSpace='rgb',opacity=1, interpolate=True, autoLog=False))&amp;#10;&amp;#10;aperture.enabled = True&amp;#10;screenshot = visual.BufferImageStim(win, interpolate=False, stim=stim_list, rect=(-1, 1, 1, -1))&amp;#10;aperture.enabled = False&amp;#10;&amp;#10;started = False&amp;#10;repetition += 1" valType="extendedCode"/>
+        <Param name="Begin Routine" updates="constant" val="staircase = trials.staircases[0]&amp;#10;&amp;#10;orientation = random.choice(degrees.keys())&amp;#10;&amp;#10;degree = degrees[orientation]&amp;#10;&amp;#10;sf = -1*level&amp;#10;&amp;#10;polygon_width_white = 1.0 / (2.0 * sf) * duty_cycle / 0.5&amp;#10;&amp;#10;count = int(math.ceil(diameter * sf / 2.0))&amp;#10;&amp;#10;stim_list = []&amp;#10;stim_list.append(aperture)&amp;#10;stim_list.append(visual.Rect(win=win, name='background', units='deg', width=diameter, height=diameter, ori=0, pos=(0,0), lineWidth=0, lineColor=[1,1,1], lineColorSpace='rgb',fillColor=dark_stripes_color, fillColorSpace='rgb',opacity=1, interpolate=True, autoLog=False))&amp;#10;&amp;#10;for i in range(-count, count+1):&amp;#10;    shift = i / sf&amp;#10;    bl = 1&amp;#10;&amp;#10;    if degree == 0:&amp;#10;        pos_white = (shift, 0)&amp;#10;    elif degree == 90:&amp;#10;        pos_white = (0, shift)&amp;#10;    elif degree == 45 or degree == 135:&amp;#10;        bl = 2*sqrt(2)&amp;#10;        pos_white = (shift * sqrt(2), 0)&amp;#10;&amp;#10;    stim_list.append(visual.Rect(win=win, name=('polygon_white_%d' % i),units='deg', width=polygon_width_white, height=diameter*bl,ori=degree, pos=pos_white, lineWidth=0, lineColor=[1,1,1], lineColorSpace='rgb',fillColor=bright_stripes_color, fillColorSpace='rgb',opacity=1, interpolate=True, autoLog=False))&amp;#10;&amp;#10;aperture.enabled = True&amp;#10;screenshot = visual.BufferImageStim(win, interpolate=False, stim=stim_list, rect=(-1, 1, 1, -1))&amp;#10;aperture.enabled = False&amp;#10;&amp;#10;started = False&amp;#10;repetition += 1" valType="extendedCode"/>
         <Param name="Code Type" updates="None" val="Py" valType="str"/>
         <Param name="Each Frame" updates="constant" val="if t &gt; 0.5 and started == False:&amp;#10;    started = True&amp;#10;    screenshot.setAutoDraw(True)" valType="extendedCode"/>
         <Param name="Each JS Frame" updates="constant" val="" valType="extendedCode"/>
@@ -201,6 +201,18 @@
         <Param name="units" updates="None" val="from exp settings" valType="str"/>
         <Param name="wrapWidth" updates="constant" val="" valType="code"/>
       </TextComponent>
+      <SoundComponent name="sound_3">
+        <Param name="durationEstim" updates="None" val="" valType="code"/>
+        <Param name="name" updates="None" val="sound_3" valType="code"/>
+        <Param name="sound" updates="constant" val="Ta Da-SoundBible.com-1884170640.wav" valType="str"/>
+        <Param name="startEstim" updates="None" val="" valType="code"/>
+        <Param name="startType" updates="None" val="time (s)" valType="str"/>
+        <Param name="startVal" updates="None" val="0.0" valType="code"/>
+        <Param name="stopType" updates="None" val="duration (s)" valType="str"/>
+        <Param name="stopVal" updates="constant" val="" valType="code"/>
+        <Param name="syncScreenRefresh" updates="constant" val="True" valType="bool"/>
+        <Param name="volume" updates="constant" val="1" valType="code"/>
+      </SoundComponent>
     </Routine>
     <Routine name="feedback">
       <SoundComponent name="sound_2">
