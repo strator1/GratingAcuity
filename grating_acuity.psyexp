@@ -24,7 +24,7 @@
     <Param name="Use version" updates="None" val="" valType="str"/>
     <Param name="Window size (pixels)" updates="None" val="[1600, 1200]" valType="code"/>
     <Param name="blendMode" updates="None" val="avg" valType="str"/>
-    <Param name="color" updates="None" val="$[0,0,0]" valType="str"/>
+    <Param name="color" updates="None" val="$[-1,-1,-1]" valType="str"/>
     <Param name="colorSpace" updates="None" val="rgb" valType="str"/>
     <Param name="expName" updates="None" val="Grating acuity test" valType="str"/>
     <Param name="exportHTML" updates="None" val="on Sync" valType="str"/>
@@ -33,10 +33,10 @@
   <Routines>
     <Routine name="trial">
       <CodeComponent name="code">
-        <Param name="Begin Experiment" updates="constant" val="import random&amp;#10;import math&amp;#10;from psychopy.tools.monitorunittools import deg2pix&amp;#10;&amp;#10;win.allowStencil=True&amp;#10;&amp;#10;duty_cycle = float(expInfo['duty cycle [0.0 - 1.0]'])&amp;#10;background_color = expInfo['background color']&amp;#10;bright_stripes_color = expInfo['bright stripes color']&amp;#10;dark_stripes_color = expInfo['dark stripes color']&amp;#10;win.color = background_color&amp;#10;diameter = float(expInfo['Aperture diameter (degree)'])&amp;#10;&amp;#10;degrees = {'left' : 90, 'up' : 0, 'pageup' : 45, 'home' : 135}&amp;#10;key_mapping = {'left' : 'left', 'up' : 'up', 'pageup': 'pageup', 'home' : 'home', 'right' : 'left', 'down' : 'up', 'end' : 'pageup', 'pagedown' : 'home', 'num_left' :'left', 'num_right' : 'left', 'num_up' : 'up', 'num_down' : 'up', 'num_prior' : 'pageup', 'num_next' : 'home', 'num_pageup' : 'pageup', 'num_home' : 'home', 'num_7' : 'home', 'num_8' : 'up', 'num_9' : 'pageup', 'num_4' : 'left', 'num_6' : 'left', 'num_1' : 'pageup', 'num_2' : 'up', 'num_3' : 'home', 'num_end' : 'pageup'}&amp;#10;&amp;#10;aperture = visual.Aperture(win, size=(2 * deg2pix(diameter, win.monitor) / win.size[0], 2 * deg2pix(diameter, win.monitor) / win.size[1]), autoLog=False)&amp;#10;aperture.enabled = False&amp;#10;&amp;#10;failed = False&amp;#10;repetition = 0" valType="extendedCode"/>
+        <Param name="Begin Experiment" updates="constant" val="import random&amp;#10;import math&amp;#10;from psychopy.tools.monitorunittools import deg2pix&amp;#10;&amp;#10;win.allowStencil=True&amp;#10;&amp;#10;duty_cycle = float(expInfo['duty cycle [0.0 - 1.0]'])&amp;#10;background_color = expInfo['background color']&amp;#10;bright_stripes_color = expInfo['bright stripes color']&amp;#10;dark_stripes_color = expInfo['dark stripes color']&amp;#10;win.color = background_color&amp;#10;diameter = float(expInfo['Aperture diameter (degree)'])&amp;#10;&amp;#10;degrees = {'left' : 90, 'up' : 0, 'pageup' : 45, 'home' : 135}&amp;#10;key_mapping = {'left' : 'left', 'up' : 'up', 'pageup': 'pageup', 'home' : 'home', 'right' : 'left', 'down' : 'up', 'end' : 'pageup', 'pagedown' : 'home', 'num_left' :'left', 'num_right' : 'left', 'num_up' : 'up', 'num_down' : 'up', 'num_prior' : 'pageup', 'num_next' : 'home', 'num_pageup' : 'pageup', 'num_home' : 'home', 'num_7' : 'home', 'num_8' : 'up', 'num_9' : 'pageup', 'num_4' : 'left', 'num_6' : 'left', 'num_1' : 'pageup', 'num_2' : 'up', 'num_3' : 'home', 'num_end' : 'pageup'}&amp;#10;orientation_char = { 0 : '|', 45 : '/', 90 : '-', 135 : '\\' }&amp;#10;&amp;#10;aperture = visual.Aperture(win, size=(2 * deg2pix(diameter, win.monitor) / win.size[0], 2 * deg2pix(diameter, win.monitor) / win.size[1]), autoLog=False)&amp;#10;aperture.enabled = False&amp;#10;&amp;#10;failed = False&amp;#10;repetition = 0&amp;#10;&amp;#10;&amp;#10;win_control = visual.Window(&amp;#10;    size=[500, 250], fullscr=False, screen=2,&amp;#10;    allowGUI=True, allowStencil=False,&amp;#10;    monitor=u'testMonitor', color=[-1,-1,-1], colorSpace='rgb',&amp;#10;    blendMode='avg', useFBO=True)&amp;#10;&amp;#10;control_text = visual.TextStim(win_control, pos=[0, 0])&amp;#10;control_text.size=[2, 2]" valType="extendedCode"/>
         <Param name="Begin JS Experiment" updates="constant" val="" valType="extendedCode"/>
         <Param name="Begin JS Routine" updates="constant" val="" valType="extendedCode"/>
-        <Param name="Begin Routine" updates="constant" val="staircase = trials.staircases[0]&amp;#10;&amp;#10;orientation = random.choice(degrees.keys())&amp;#10;&amp;#10;degree = degrees[orientation]&amp;#10;&amp;#10;sf = -level&amp;#10;&amp;#10;polygon_width_white = 1.0 / (2.0 * sf) * duty_cycle / 0.5&amp;#10;&amp;#10;count = int(math.ceil(diameter * sf / 2.0))&amp;#10;&amp;#10;stim_list = []&amp;#10;stim_list.append(visual.Rect(win=win, name='background', units='deg', width=diameter, height=diameter, ori=0, pos=(0,0), lineWidth=0, lineColor=[1,1,1], lineColorSpace='rgb',fillColor=dark_stripes_color, fillColorSpace='rgb',opacity=1, interpolate=True, autoLog=False))&amp;#10;&amp;#10;for i in range(-count, count+1):&amp;#10;    shift = i / sf&amp;#10;    bl = 1&amp;#10;&amp;#10;    if degree == 0:&amp;#10;        pos_white = (shift, 0)&amp;#10;    elif degree == 90:&amp;#10;        pos_white = (0, shift)&amp;#10;    elif degree == 45 or degree == 135:&amp;#10;        bl = 2*sqrt(2)&amp;#10;        pos_white = (shift * sqrt(2), 0)&amp;#10;&amp;#10;    stim_list.append(visual.Rect(win=win, name=('polygon_bright_%d' % i),units='deg', width=polygon_width_white, height=diameter*bl,ori=degree, pos=pos_white, lineWidth=0, lineColor=[1,1,1], lineColorSpace='rgb',fillColor=bright_stripes_color, fillColorSpace='rgb',opacity=1, interpolate=True, autoLog=False))&amp;#10;&amp;#10;aperture.enabled = True&amp;#10;buffer = visual.BufferImageStim(win, interpolate=False, stim=stim_list, rect=(-1, 1, 1, -1), autoLog=False)&amp;#10;aperture.enabled = False&amp;#10;&amp;#10;repetition += 1" valType="extendedCode"/>
+        <Param name="Begin Routine" updates="constant" val="staircase = trials.staircases[0]&amp;#10;&amp;#10;orientation = random.choice(degrees.keys())&amp;#10;&amp;#10;degree = degrees[orientation]&amp;#10;&amp;#10;sf = -level&amp;#10;&amp;#10;stripe_width = 1.0 / (2.0 * sf) * duty_cycle / 0.5&amp;#10;&amp;#10;count = int(math.ceil(diameter * sf / 2.0))&amp;#10;&amp;#10;stim_list = []&amp;#10;stim_list.append(visual.Rect(win=win, name='background', units='deg', width=diameter, height=diameter, ori=0, pos=(0,0), lineWidth=0, lineColor=[1,1,1], lineColorSpace='rgb',fillColor=bright_stripes_color, fillColorSpace='rgb',opacity=1, interpolate=True, autoLog=False))&amp;#10;&amp;#10;for i in range(-count, count+1):&amp;#10;    shift = i / sf&amp;#10;    bl = 1&amp;#10;&amp;#10;    if degree == 0:&amp;#10;        pos_white = (shift, 0)&amp;#10;    elif degree == 90:&amp;#10;        pos_white = (0, shift)&amp;#10;    elif degree == 45 or degree == 135:&amp;#10;        bl = 2*sqrt(2)&amp;#10;        pos_white = (shift * sqrt(2), 0)&amp;#10;&amp;#10;    stim_list.append(visual.Rect(win=win, name=('polygon_dark_%d' % i),units='deg', width=stripe_width, height=diameter*bl,ori=degree, pos=pos_white, lineWidth=0, lineColor=[1,1,1], lineColorSpace='rgb',fillColor=dark_stripes_color, fillColorSpace='rgb',opacity=1, interpolate=True, autoLog=False))&amp;#10;&amp;#10;aperture.enabled = True&amp;#10;buffer = visual.BufferImageStim(win, interpolate=False, stim=stim_list, rect=(-1, 1, 1, -1), autoLog=False)&amp;#10;aperture.enabled = False&amp;#10;&amp;#10;repetition += 1&amp;#10;&amp;#10;&amp;#10;control_text.text = (u'Trial: %d\nOrientation: %s (%d°)\nSpatial frequency: %.2f cpd\nCI: %.2f [%.2f; %.2f]' % (orientation_char[degree], degree, repetition, sf, staircase.confInterval(getDifference=True), -staircase.confInterval()[1], -staircase.confInterval()[0]))&amp;#10;control_text.draw()&amp;#10;win_control.update()" valType="extendedCode"/>
         <Param name="Code Type" updates="None" val="Py" valType="str"/>
         <Param name="Each Frame" updates="constant" val="if t &gt; 0.5:&amp;#10;    buffer.draw()" valType="extendedCode"/>
         <Param name="Each JS Frame" updates="constant" val="" valType="extendedCode"/>
@@ -118,7 +118,7 @@
         <Param name="startType" updates="None" val="time (s)" valType="str"/>
         <Param name="startVal" updates="None" val="0.0" valType="code"/>
         <Param name="stopType" updates="None" val="duration (s)" valType="str"/>
-        <Param name="stopVal" updates="constant" val="" valType="code"/>
+        <Param name="stopVal" updates="constant" val="20" valType="code"/>
         <Param name="store" updates="constant" val="nothing" valType="str"/>
         <Param name="storeCorrect" updates="constant" val="False" valType="bool"/>
         <Param name="syncScreenRefresh" updates="constant" val="False" valType="bool"/>
@@ -141,7 +141,7 @@
         <Param name="startType" updates="None" val="time (s)" valType="str"/>
         <Param name="startVal" updates="None" val="0.0" valType="code"/>
         <Param name="stopType" updates="None" val="duration (s)" valType="str"/>
-        <Param name="stopVal" updates="constant" val="" valType="code"/>
+        <Param name="stopVal" updates="constant" val="20" valType="code"/>
         <Param name="texture resolution" updates="constant" val="128" valType="code"/>
         <Param name="units" updates="None" val="from exp settings" valType="str"/>
       </ImageComponent>
@@ -160,7 +160,7 @@
         <Param name="name" updates="None" val="create_result" valType="code"/>
       </CodeComponent>
       <TextComponent name="result_text">
-        <Param name="color" updates="set every repeat" val="$('red' if failed else 'white')" valType="str"/>
+        <Param name="color" updates="constant" val="white" valType="str"/>
         <Param name="colorSpace" updates="constant" val="rgb" valType="str"/>
         <Param name="durationEstim" updates="None" val="" valType="code"/>
         <Param name="flip" updates="constant" val="" valType="str"/>
@@ -175,8 +175,8 @@
         <Param name="startType" updates="None" val="time (s)" valType="str"/>
         <Param name="startVal" updates="None" val="0.0" valType="code"/>
         <Param name="stopType" updates="None" val="duration (s)" valType="str"/>
-        <Param name="stopVal" updates="constant" val="" valType="code"/>
-        <Param name="text" updates="set every repeat" val="$('Failed' if failed else $('N: %d\nMean (SD): %.2f (%.2f) cpd' % (repetition, mean, sd)))&amp;#10;    " valType="str"/>
+        <Param name="stopVal" updates="constant" val="20" valType="code"/>
+        <Param name="text" updates="set every repeat" val="$('End' if failed else $('End\nN: %d\nMean (SD): %.2f (%.2f) cpd' % (repetition, mean, sd)))&amp;#10;    " valType="str"/>
         <Param name="units" updates="None" val="from exp settings" valType="str"/>
         <Param name="wrapWidth" updates="constant" val="" valType="code"/>
       </TextComponent>
@@ -188,7 +188,7 @@
         <Param name="startType" updates="None" val="time (s)" valType="str"/>
         <Param name="startVal" updates="None" val="0.0" valType="code"/>
         <Param name="stopType" updates="None" val="duration (s)" valType="str"/>
-        <Param name="stopVal" updates="constant" val="" valType="code"/>
+        <Param name="stopVal" updates="constant" val="20" valType="code"/>
         <Param name="syncScreenRefresh" updates="constant" val="True" valType="bool"/>
         <Param name="volume" updates="set every repeat" val="1 if feedback &gt; 0 else 0" valType="code"/>
       </SoundComponent>
@@ -216,22 +216,6 @@
         <Param name="stopType" updates="None" val="duration (s)" valType="str"/>
         <Param name="stopVal" updates="constant" val="0.5" valType="code"/>
       </StaticComponent>
-    </Routine>
-    <Routine name="start">
-      <CodeComponent name="dialog">
-        <Param name="Begin Experiment" updates="constant" val="win.allowGUI=True&amp;#10;&amp;#10;dlg2 = gui.Dlg(title=expName, screen=-1)&amp;#10;&amp;#10;dlg2.addText(u'Test details')&amp;#10;dlg2.addField(u'participant')&amp;#10;dlg2.addField(u'session', u'001')&amp;#10;dlg2.addField(u'comment')&amp;#10;dlg2.addText(u'Settings')&amp;#10;dlg2.addField(u'Feedback', choices=['Start only', 'No feedback', 'Start and feedback'])&amp;#10;dlg2.addField(u'timeout (s)', u'30')&amp;#10;dlg2.addField(u'duty cycle [0.0 - 1.0]', u'0.5')&amp;#10;dlg2.addField(u'Aperture diameter (degree)', u'16')&amp;#10;dlg2.addField(u'bright stripes color', choices=['white', 'red', 'green', 'yellow', 'blue'])&amp;#10;dlg2.addField(u'dark stripes color', choices=['black', 'red', 'green', 'yellow', 'blue'])&amp;#10;dlg2.addField(u'background color', choices=[u'black', u'grey', u'white'])&amp;#10;&amp;#10;init_data = dlg2.show()&amp;#10;if dlg2.OK:&amp;#10;    expInfo['participant'] = init_data[0]&amp;#10;    expInfo['session'] = init_data[1]&amp;#10;    expInfo['comment'] = init_data[2]&amp;#10;    expInfo['feedback'] = init_data[3]&amp;#10;    expInfo['timeout (s)'] = init_data[4]&amp;#10;    expInfo['duty cycle [0.0 - 1.0]'] = init_data[5]&amp;#10;    expInfo['Aperture diameter (degree)'] = init_data[6]&amp;#10;    expInfo['bright stripes color'] = init_data[7]&amp;#10;    expInfo['dark stripes color'] = init_data[8]&amp;#10;    expInfo['background color'] = init_data[9]&amp;#10;&amp;#10;    filename = _thisDir + os.sep + u'data/%s_%s_%s' % (expInfo['participant'], expName, expInfo['date'])&amp;#10;    timeout = float(expInfo['timeout (s)'])&amp;#10;    win.allowGUI=False&amp;#10;    if expInfo['feedback'] == 'No feedback':&amp;#10;        feedback = 0&amp;#10;    elif expInfo['feedback'] == 'Start only':&amp;#10;        feedback = 1&amp;#10;    else:&amp;#10;        feedback = 2&amp;#10;else:&amp;#10;    core.quit()  # user pressed cancel" valType="extendedCode"/>
-        <Param name="Begin JS Experiment" updates="constant" val="" valType="extendedCode"/>
-        <Param name="Begin JS Routine" updates="constant" val="" valType="extendedCode"/>
-        <Param name="Begin Routine" updates="constant" val="" valType="extendedCode"/>
-        <Param name="Code Type" updates="None" val="Py" valType="str"/>
-        <Param name="Each Frame" updates="constant" val="" valType="extendedCode"/>
-        <Param name="Each JS Frame" updates="constant" val="" valType="extendedCode"/>
-        <Param name="End Experiment" updates="constant" val="" valType="extendedCode"/>
-        <Param name="End JS Experiment" updates="constant" val="" valType="extendedCode"/>
-        <Param name="End JS Routine" updates="constant" val="" valType="extendedCode"/>
-        <Param name="End Routine" updates="constant" val="" valType="extendedCode"/>
-        <Param name="name" updates="None" val="dialog" valType="code"/>
-      </CodeComponent>
     </Routine>
     <Routine name="failed">
       <TextComponent name="text_2">
@@ -271,6 +255,22 @@
         <Param name="storeCorrect" updates="constant" val="False" valType="bool"/>
         <Param name="syncScreenRefresh" updates="constant" val="False" valType="bool"/>
       </KeyboardComponent>
+    </Routine>
+    <Routine name="start">
+      <CodeComponent name="dialog">
+        <Param name="Begin Experiment" updates="constant" val="win.allowGUI=True&amp;#10;&amp;#10;dlg2 = gui.Dlg(title=expName, screen=-1)&amp;#10;&amp;#10;dlg2.addText(u'Test details')&amp;#10;dlg2.addField(u'participant')&amp;#10;dlg2.addField(u'session', u'001')&amp;#10;dlg2.addField(u'comment')&amp;#10;dlg2.addText(u'Settings')&amp;#10;dlg2.addField(u'Feedback', choices=['Start only', 'No feedback', 'Start and feedback'])&amp;#10;dlg2.addField(u'timeout (s)', u'30')&amp;#10;dlg2.addField(u'duty cycle [0.0 - 1.0]', u'0.5')&amp;#10;dlg2.addField(u'Aperture diameter (degree)', u'16')&amp;#10;dlg2.addField(u'bright stripes color', choices=['white', 'red', 'green', 'yellow', 'blue'])&amp;#10;dlg2.addField(u'dark stripes color', choices=['black', 'red', 'green', 'yellow', 'blue'])&amp;#10;dlg2.addField(u'background color', choices=[u'black', u'grey', u'white'])&amp;#10;&amp;#10;init_data = dlg2.show()&amp;#10;if dlg2.OK:&amp;#10;    expInfo['participant'] = init_data[0]&amp;#10;    expInfo['session'] = init_data[1]&amp;#10;    expInfo['comment'] = init_data[2]&amp;#10;    expInfo['feedback'] = init_data[3]&amp;#10;    expInfo['timeout (s)'] = init_data[4]&amp;#10;    expInfo['duty cycle [0.0 - 1.0]'] = init_data[5]&amp;#10;    expInfo['Aperture diameter (degree)'] = init_data[6]&amp;#10;    expInfo['bright stripes color'] = init_data[7]&amp;#10;    expInfo['dark stripes color'] = init_data[8]&amp;#10;    expInfo['background color'] = init_data[9]&amp;#10;&amp;#10;    filename = _thisDir + os.sep + u'data/%s_%s_%s' % (expInfo['participant'], expName, expInfo['date'])&amp;#10;    timeout = float(expInfo['timeout (s)'])&amp;#10;    win.allowGUI=False&amp;#10;    if expInfo['feedback'] == 'No feedback':&amp;#10;        feedback = 0&amp;#10;    elif expInfo['feedback'] == 'Start only':&amp;#10;        feedback = 1&amp;#10;    else:&amp;#10;        feedback = 2&amp;#10;else:&amp;#10;    core.quit()  # user pressed cancel" valType="extendedCode"/>
+        <Param name="Begin JS Experiment" updates="constant" val="" valType="extendedCode"/>
+        <Param name="Begin JS Routine" updates="constant" val="" valType="extendedCode"/>
+        <Param name="Begin Routine" updates="constant" val="" valType="extendedCode"/>
+        <Param name="Code Type" updates="None" val="Py" valType="str"/>
+        <Param name="Each Frame" updates="constant" val="" valType="extendedCode"/>
+        <Param name="Each JS Frame" updates="constant" val="" valType="extendedCode"/>
+        <Param name="End Experiment" updates="constant" val="" valType="extendedCode"/>
+        <Param name="End JS Experiment" updates="constant" val="" valType="extendedCode"/>
+        <Param name="End JS Routine" updates="constant" val="" valType="extendedCode"/>
+        <Param name="End Routine" updates="constant" val="" valType="extendedCode"/>
+        <Param name="name" updates="None" val="dialog" valType="code"/>
+      </CodeComponent>
     </Routine>
   </Routines>
   <Flow>
